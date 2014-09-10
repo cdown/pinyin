@@ -67,3 +67,34 @@ def tonify_char(char, tone):
     if tone is None:
         return char
     return TONE_REPLACEMENTS[char][tone - 1]
+
+
+def num_to_inline(pinyin):
+    '''
+    Returns the input string, with numbered tones replaced with Unicode.
+
+    :param pinyin_original: pinyin text that includes numbered tones
+    :returns: the input string, using Unicode replacements for numbered tones
+    '''
+
+    word_tones = []
+    output = []
+
+    words = pinyin.split()
+
+    for word in words:
+        try:
+            tone = int(word[-1])
+        except ValueError:
+            tone = None
+
+        word = word[:-1]
+        word_tones.append((word, tone))
+
+    for word, tone in word_tones:
+        char_to_change = tone_vowel(word)
+        char_tone_unicode = tonify_char(char_to_change, tone)
+        unicode_tone_word = word.replace(char_to_change, char_tone_unicode)
+        output.append(unicode_tone_word)
+
+    return ' '.join(output)

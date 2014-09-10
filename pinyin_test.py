@@ -27,3 +27,11 @@ def test_tonify_char():
 
 def test_tonify_char_none():
     eq('ü', pinyin.tonify_char('ü', None))
+
+
+def test_word_num_to_inline():
+    eq('nǚ', pinyin.num_to_inline('nü3'))
+
+
+def test_multi_word_num_to_inline():
+    eq('nǚ rén', pinyin.num_to_inline('nü3 ren2'))
