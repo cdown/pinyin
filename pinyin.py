@@ -5,6 +5,17 @@ from __future__ import unicode_literals
 import re
 
 
+TONE_REPLACEMENTS = {
+    'a': ['ā', 'á', 'ǎ', 'à'],
+    'e': ['ē', 'é', 'ě', 'è'],
+    'i': ['ī', 'í', 'ǐ', 'ì'],
+    'o': ['ō', 'ó', 'ǒ', 'ò'],
+    'u': ['ū', 'ú', 'ǔ', 'ù'],
+    'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ'],
+    'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ'],
+}
+
+
 def tone_vowel(word):
     '''
     Find which character to put the tone over, using standard Pinyin rules.
@@ -41,3 +52,18 @@ def tone_vowel(word):
         return word[max_idx]
     else:
         return None
+
+
+def tonify_char(char, tone):
+    '''
+    Given a character and a tone, determine what Unicode should be used to
+    represent it.
+
+    :param char: a character without a tone
+    :param tone: the tone number to use
+    :returns: a unicode char representing this char/tone combination
+    '''
+
+    if tone is None:
+        return char
+    return TONE_REPLACEMENTS[char][tone - 1]

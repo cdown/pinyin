@@ -19,3 +19,11 @@ def test_tone_vowel():
 
     for word, expected_vowel in expected:
         eq(expected_vowel, pinyin.tone_vowel(word))
+
+
+def test_tonify_char():
+    eq('ǘ', pinyin.tonify_char('ü', 2))
+
+
+def test_tonify_char_none():
+    eq('ü', pinyin.tonify_char('ü', None))
