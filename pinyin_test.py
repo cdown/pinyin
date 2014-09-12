@@ -35,3 +35,7 @@ def test_word_num_to_inline():
 
 def test_multi_word_num_to_inline():
     eq('nǚ rén', pinyin.num_to_inline('nü3 ren2'))
+
+
+def test_multi_word_num_to_inline_toneless():
+    eq('zhuō zi', pinyin.num_to_inline('zhuo1 zi'))

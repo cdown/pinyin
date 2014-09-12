@@ -87,8 +87,9 @@ def num_to_inline(pinyin):
             tone = int(word[-1])
         except ValueError:
             tone = None
+        else:
+            word = word[:-1]
 
-        word = word[:-1]
         word_tones.append((word, tone))
 
     for word, tone in word_tones:
