@@ -39,3 +39,7 @@ def test_multi_word_num_to_inline():
 
 def test_multi_word_num_to_inline_toneless():
     eq('zhuō zi', pinyin.num_to_inline('zhuo1 zi'))
+
+
+def test_multi_word_numbers():
+    eq('wǒ yǒu 25 kuài yuán', pinyin.num_to_inline('wo3 you3 25 kuai4 yuan2'))

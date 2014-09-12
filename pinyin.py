@@ -83,19 +83,30 @@ def num_to_inline(pinyin):
     words = pinyin.split()
 
     for word in words:
-        try:
-            tone = int(word[-1])
-        except ValueError:
+        if word.isdigit():
+            # We don't want Arabic numerals representing a word to mistakenly
+            # get picked up as tones.
             tone = None
         else:
-            word = word[:-1]
+            try:
+                tone = int(word[-1])
+            except ValueError:
+                tone = None
+            else:
+                word = word[:-1]
 
         word_tones.append((word, tone))
 
     for word, tone in word_tones:
         char_to_change = tone_vowel(word)
+
+        if char_to_change is None:
+            output.append(word)
+            continue
+
         char_tone_unicode = tonify_char(char_to_change, tone)
         unicode_tone_word = word.replace(char_to_change, char_tone_unicode)
+
         output.append(unicode_tone_word)
 
     return ' '.join(output)
