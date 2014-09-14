@@ -41,7 +41,7 @@ def tone_vowel(word):
         if vowel_type in word:
             return vowel_types[vowel_type]
 
-    last_vowel = re.search('([aeiouvü])[^aeiouvü]*$', word)
+    last_vowel = re.search('.*([aeiouvü])', word)
     if last_vowel is None:
         return None
 
