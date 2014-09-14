@@ -43,3 +43,15 @@ def test_multi_word_num_to_inline_toneless():
 
 def test_multi_word_numbers():
     eq('wǒ yǒu 25 kuài yuán', pinyin.num_to_inline('wo3 you3 25 kuai4 yuan2'))
+
+
+def test_split_word_and_tone():
+    eq(('ai', 4), pinyin.split_word_and_tone('ai4'))
+
+
+def test_split_word_and_tone_none():
+    eq(('zi', None), pinyin.split_word_and_tone('zi'))
+
+
+def test_split_word_and_tone_arabic_number():
+    eq(('2048', None), pinyin.split_word_and_tone('2048'))

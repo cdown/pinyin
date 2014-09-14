@@ -63,6 +63,26 @@ def tonify_char(char, tone):
     return TONE_REPLACEMENTS[char][tone - 1]
 
 
+def split_word_and_tone(word):
+    '''
+    Split a word from its tone.
+
+    :param word: a word, potentially with a tone
+    :returns: a tuple of (word, tone)
+    '''
+
+    if word.isdigit():
+        # This is likely raw Arabic numerals.
+        return word, None
+    else:
+        try:
+            tone = int(word[-1])
+        except ValueError:
+            return word, None
+        else:
+            return word[:-1], tone
+
+
 def num_to_inline(pinyin):
     '''
     Returns the input string, with numbered tones replaced with Unicode.
@@ -77,19 +97,7 @@ def num_to_inline(pinyin):
     words = pinyin.split()
 
     for word in words:
-        if word.isdigit():
-            # We don't want Arabic numerals representing a word to mistakenly
-            # get picked up as tones.
-            tone = None
-        else:
-            try:
-                tone = int(word[-1])
-            except ValueError:
-                tone = None
-            else:
-                word = word[:-1]
-
-        word_tones.append((word, tone))
+        word_tones.append(split_word_and_tone(word))
 
     for word, tone in word_tones:
         char_to_change = tone_vowel(word)
