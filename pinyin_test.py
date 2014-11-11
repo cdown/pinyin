@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf8 :
 
+"""
+Test suite for pinyin, a library to manipulate Hanyu Pinyin.
+"""
+
 from __future__ import unicode_literals
 from nose.tools import eq_ as eq
 import pinyin

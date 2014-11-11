@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf8 :
 
+"""
+Generic library for manipulating Hanyu Pinyin.
+"""
+
 from __future__ import unicode_literals
 import re
 
