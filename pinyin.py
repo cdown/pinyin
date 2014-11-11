@@ -87,6 +87,27 @@ def split_word_and_tone(word):
             return word[:-1], tone
 
 
+def numbered_word_to_diacritic(pinyin):
+    '''
+    Converts a word with a numbered tone ("you2") to a word with a diacritic
+    tone ("yóu").
+
+    :param pinyin: a pinyin word with a numbered tone
+    :returns: the same pinyin word with a diacritic tone
+    '''
+
+    word, tone = split_word_and_tone(pinyin)
+    char_to_change = tone_vowel(word)
+
+    if char_to_change is None:
+        return word
+
+    char_tone_unicode = tonify_char(char_to_change, tone)
+    unicode_tone_word = word.replace(char_to_change, char_tone_unicode)
+
+    return unicode_tone_word
+
+
 def num_to_inline(pinyin):
     '''
     Returns the input string, with numbered tones replaced with Unicode.
@@ -95,24 +116,5 @@ def num_to_inline(pinyin):
     :returns: the input string, using Unicode replacements for numbered tones
     '''
 
-    word_tones = []
-    output = []
-
     words = pinyin.split()
-
-    for word in words:
-        word_tones.append(split_word_and_tone(word))
-
-    for word, tone in word_tones:
-        char_to_change = tone_vowel(word)
-
-        if char_to_change is None:
-            output.append(word)
-            continue
-
-        char_tone_unicode = tonify_char(char_to_change, tone)
-        unicode_tone_word = word.replace(char_to_change, char_tone_unicode)
-
-        output.append(unicode_tone_word)
-
-    return ' '.join(output)
+    return ' '.join(numbered_word_to_diacritic(word) for word in words)
