@@ -8,9 +8,10 @@ python:
   - 3.3
   - 3.4
 script:
+  # pylint's logilab dependencies are totally broken on 3.2
+  - 'case $(python -V 2>&1) in "Python 3.2."*) :;; *) pylint --rcfile=.pylintrc pinyin.py; esac'
+  - 'case $(python -V 2>&1) in "Python 3.2."*) :;; *) pylint --rcfile=.pylintrc --disable=missing-docstring,invalid-name pinyin_test.py; esac'
   - pep8 pinyin.py pinyin_test.py
-  - pylint --rcfile=.pylintrc pinyin.py
-  - pylint --rcfile=.pylintrc --disable=missing-docstring,invalid-name pinyin_test.py
   - flake8 --max-complexity 7 pinyin.py pinyin_test.py
   - nosetests --with-coverage
 after_success:
