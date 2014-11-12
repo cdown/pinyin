@@ -46,10 +46,8 @@ def tone_vowel(word):
             return vowel_types[vowel_type]
 
     last_vowel = re.search('.*([aeiouvü])', word)
-    if last_vowel is None:
-        return None
-
-    return last_vowel.group(1)
+    if last_vowel is not None:
+        return last_vowel.group(1)
 
 
 def tonify_char(char, tone):
