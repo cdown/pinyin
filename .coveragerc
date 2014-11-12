@@ -1,0 +1,9 @@
+[run]
+omit =
+    */site-packages/*
+    */dist-packages/*
+    */tests/*
+    */encodings/*
+
+exclude_lines =
+    pragma: no cover

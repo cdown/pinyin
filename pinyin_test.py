@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf8 :
 
+"""
+Test suite for pinyin, a library to manipulate Hanyu Pinyin.
+"""
+
 from __future__ import unicode_literals
 from nose.tools import eq_ as eq
 import pinyin
@@ -27,6 +31,14 @@ def test_tonify_char():
 
 def test_tonify_char_none():
     eq('ü', pinyin.tonify_char('ü', None))
+
+
+def test_numbered_word_to_diacritic():
+    eq('nǚ', pinyin.numbered_word_to_diacritic('nü3'))
+
+
+def test_numbered_word_to_diacritic_none():
+    eq('nü', pinyin.numbered_word_to_diacritic('nü'))
 
 
 def test_word_num_to_inline():
