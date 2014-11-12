@@ -11,7 +11,7 @@ script:
   - pep8 pinyin.py pinyin_test.py
   - pylint --rcfile=.pylintrc pinyin.py
   - pylint --rcfile=.pylintrc --disable=missing-docstring,invalid-name pinyin_test.py
-  - flake8 --max-complexity 5 pinyin.py pinyin_test.py
+  - flake8 --max-complexity 7 pinyin.py pinyin_test.py
   - nosetests --with-coverage
 after_success:
   - coveralls
