@@ -1,18 +1,13 @@
 language: python
 install:
-  - pip install --use-mirrors nose pep8 pylint flake8 coveralls
+  - pip install --use-mirrors nose pep8 flake8 coveralls
 python:
-  - 2.6
   - 2.7
-  - 3.2
   - 3.3
   - 3.4
 script:
-  # pylint's logilab dependencies are totally broken on 3.2
-  - 'case $(python -V 2>&1) in "Python 3.2."*) :;; *) pylint --rcfile=.pylintrc pinyin.py; esac'
-  - 'case $(python -V 2>&1) in "Python 3.2."*) :;; *) pylint --rcfile=.pylintrc --disable=missing-docstring,invalid-name pinyin_test.py; esac'
-  - pep8 pinyin.py pinyin_test.py
-  - flake8 --max-complexity 7 pinyin.py pinyin_test.py
+  - pep8 pinyin.py
+  - flake8 --max-complexity 5 pinyin.py
   - nosetests --with-coverage
 after_success:
   - coveralls
