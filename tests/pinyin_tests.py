@@ -54,7 +54,7 @@ def test_multi_word_num_to_inline_toneless():
 
 
 def test_multi_word_numbers():
-    eq('wǒ yǒu 25 kuài yuán', pinyin.num_to_inline('wo3 you3 25 kuai4 yuan2'))
+    eq('wǒ yǒu 25 kuài', pinyin.num_to_inline('wo3 you3 25 kuai4'))
 
 
 def test_split_word_and_tone():

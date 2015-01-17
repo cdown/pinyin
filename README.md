@@ -24,8 +24,8 @@ pinyin is a small library to manipulate [Hanyu Pinyin][].
 Right now there is quite limited functionality, but you can do stuff like this:
 
 ```python
->>> pinyin.num_to_inline('wo3 you3 25 kuai4 yuan2')
-'wǒ yǒu 25 kuài yuán'
+>>> pinyin.num_to_inline('wo3 you3 25 kuai4')
+'wǒ yǒu 25 kuài'
 ```
 
 ## Installation
