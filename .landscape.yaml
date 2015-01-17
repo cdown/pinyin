@@ -1,2 +1,5 @@
 doc-warnings: true
 strictness: veryhigh
+
+ignore-patterns:
+  - '# no lint'
